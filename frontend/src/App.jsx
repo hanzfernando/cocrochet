@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage.jsx"
 import ShopPage from "./pages/ShopPage.jsx"
 import ProductPage from "./pages/ProductPage.jsx"
 import CartPage from "./pages/CartPage.jsx"
+import ProfilePage from "./pages/ProfilePage.jsx"
 
 // Auth
 import LoginPage from "./pages/LoginPage.jsx"
@@ -13,6 +14,7 @@ import SignupPage from "./pages/SignupPage.jsx"
 
 // Admin
 import ProductManagementPage from "./pages/ProductManagementPage.jsx"
+import OrderManagement from "./pages/OrderManagement.jsx"
 
 import { useAuthContext } from "./hooks/useAuthContext.js"
 
@@ -26,6 +28,7 @@ const App = () => {
         <Route path="/shop" element={<ShopPage />}/>
         <Route path="/shop/:productId" element={<ProductPage />} />
         <Route path="/cart" element={!user ? <LoginPage /> : <CartPage />} />
+        <Route path="/profile" element={!user ? <LoginPage /> : <ProfilePage />} />
 
         {/* Auth */}
         <Route path="/login" element={!user ?  <LoginPage /> : <Navigate to='/' />} />
@@ -33,7 +36,7 @@ const App = () => {
 
         {/* Admin */}
         <Route path="/product-management" element={user && user.role === 'admin' ? <ProductManagementPage /> : <Navigate to='/login' />} />
-
+        <Route path="/order-management" element={user && user.role === 'admin' ? <OrderManagement /> : <Navigate to='/login' />} />
         
       </Route>
     )

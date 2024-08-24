@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useCartContext } from '../hooks/useCartContext.js';
 import { getCart, updateCartItem, deleteCartItem } from '../services/cartService.js';
-import { useAuthContext } from '../hooks/useAuthContext.js';
+import { placeOrder } from '../services/orderServices.js';
 import { toast } from 'react-toastify';
 
 const CartPage = () => {
   const { state, dispatch } = useCartContext();
   const { cart } = state;
   const [selectedOrders, setSelectedOrders] = useState([]);
-  const { user } = useAuthContext();
+  const [paymentMethod, setPaymentMethod] = useState('cashondelivery'); // Default payment method
   
   useEffect(() => {
       const fetchCart = async () => {
@@ -56,18 +56,23 @@ const CartPage = () => {
     }
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     const orders = cart.cartItems.filter(item => selectedOrders.includes(item.productId._id));
     const orderDetails = orders.map(item => ({
         productId: item.productId._id,
-        productName: item.productId.name,
         quantity: item.quantity,
-        userId: user._id,
-        name: user.name,
-        email: user.email,
     }));
-    toast.success('Order placed');
-    console.log('Order Details:', orderDetails);
+    try {
+        await placeOrder(orderDetails, paymentMethod);
+        toast.success('Order placed successfully');
+        setSelectedOrders([]); // Clear selected orders after placing the order
+         // Fetch the updated cart to reflect the changes
+        const updatedCart = await getCart();
+        dispatch({ type: 'SET_CART', payload: updatedCart });
+    } catch (error) {
+        toast.error('Error placing order');
+        console.error('Error placing order: ', error);
+    }
   };
 
   const totalAmount = selectedOrders.reduce((total, selectedId) => {
@@ -137,9 +142,24 @@ const CartPage = () => {
           <div className="mt-4">
               <span className="font-medium">Total Amount: </span>₱{totalAmount.toFixed(2)}
           </div>
+          <div className="mt-4 flex gap-2">
+            <button
+              onClick={() => setPaymentMethod('gcash')}
+              className={`px-4 py-2 rounded ${paymentMethod === 'gcash' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              GCash
+            </button>
+            <button
+              onClick={() => setPaymentMethod('cashondelivery')}
+              className={`px-4 py-2 rounded ${paymentMethod === 'cashondelivery' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+            >
+              Cash on Delivery
+            </button>
+          </div>
           <button
               onClick={handlePlaceOrder}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-44">
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded w-44"
+          >
               Place Order
           </button>
         </div>

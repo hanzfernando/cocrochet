@@ -90,12 +90,20 @@ const Navbar = () => {
 
                                 {/* Admin */}
                                 {user && user.role === 'admin' && (
-                                    // PRODUCT MANAGEMENT
-                                    <NavLink
-                                        to="/product-management"
-                                        className={setTextIsActive()}>
-                                        Product
-                                    </NavLink>
+                                    <>
+                                        {/* PRODUCT MANAGEMENT */}    
+                                        <NavLink
+                                            to="/product-management"
+                                            className={setTextIsActive()}>
+                                            Product
+                                        </NavLink>
+                                        {/* ORDER MANAGEMENT */}
+                                        <NavLink
+                                            to="/order-management"
+                                            className={setTextIsActive()}>
+                                            Order
+                                        </NavLink>
+                                    </>                                 
                                 )}
                                                             
                                 {user && (

@@ -1,27 +1,28 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { getProduct } from '../services/productService.js'
-import { addToCart } from '../services/cartService.js'
-import ProductLoadingCard from '../components/ProductLoadingCard.jsx'
-import { toast } from 'react-toastify'
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProduct } from '../services/productService.js';
+import { addToCart } from '../services/cartService.js';
+import ProductLoadingCard from '../components/ProductLoadingCard.jsx';
+import { toast } from 'react-toastify';
+import { useAuthContext } from '../hooks/useAuthContext.js'; // Import useAuthContext
 
 const ProductPage = () => {
-    const { productId } = useParams()
-    // const productId = useParams().productId
-    const [product, setProduct] = useState(null)
+    const { productId } = useParams();
+    const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const { user } = useAuthContext(); // Get user from context
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const fetchedProduct = await getProduct(productId)
-                setProduct(fetchedProduct)
+                const fetchedProduct = await getProduct(productId);
+                setProduct(fetchedProduct);
             } catch (error) {
-                console.error('Failed to fetch product', error)
-            } 
-        }
-        fetchProduct()
-    }, [productId])
+                console.error('Failed to fetch product', error);
+            }
+        };
+        fetchProduct();
+    }, [productId]);
 
     const handleQuantityChange = (e) => {
         setQuantity(e.target.value);
@@ -35,17 +36,20 @@ const ProductPage = () => {
         } catch (error) {
             console.error('Error adding to cart', error);   
         }
-    }
+    };
 
     const clearQuantity = () => {
         setQuantity(1);
-    }
+    };
 
     // Conditional rendering to avoid errors while the product data is loading
     if (!product) {
-        return <ProductLoadingCard />
+        return <ProductLoadingCard />;
     }
-    
+
+    // Check if the user role is admin
+    const isAdmin = user?.role === 'admin'; // Assuming role is available on user object
+
     return (
         <div className="bg-gray-extralight">
             <div className="w-full max-w-6xl mx-auto px-10 p-8">
@@ -82,18 +86,17 @@ const ProductPage = () => {
                         <div className=""> {/* Ensure button stays at the bottom */}
                             <button
                                 onClick={handleAddToCart}
-                                className="bg-gold-extralight hover:bg-gold-light text-white font-medium py-2 px-4 rounded w-full"
+                                className={`bg-gold-extralight hover:bg-gold-light text-white font-medium py-2 px-4 rounded w-full ${isAdmin ? 'bg-gray-400 cursor-not-allowed' : ''}`}
+                                disabled={isAdmin}
                             >
-                                Add to Cart
+                                {isAdmin ? 'Admin Cannot Purchase' : 'Add to Cart'}
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    );
+};
 
-
-      );
-}
-
-export default ProductPage
+export default ProductPage;

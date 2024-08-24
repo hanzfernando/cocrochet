@@ -70,14 +70,14 @@ const ProductTable = () => {
             </div>
 
             <table className="min-w-full bg-white">
-                <thead>
+                <thead className='bg-gold-thin'>
                     <tr className='font-playfair text-left border-t border-b'>
-                        <th className="py-2 px-4 font-semibold">Name</th>
-                        <th className="py-2 px-4 font-semibold">Price</th>
-                        <th className="py-2 px-4 font-semibold">Details</th>
-                        <th className="py-2 px-4 font-semibold">Items Sold</th>
-                        <th className="py-2 px-4 font-semibold">Image</th>
-                        <th className="py-2 px-4 font-semibold">Action</th>
+                        <th className="px-6 py-3 font-semibold">Name</th>
+                        <th className="px-6 py-3 font-semibold">Price</th>
+                        <th className="px-6 py-3 font-semibold">Details</th>
+                        <th className="px-6 py-3 font-semibold">Items Sold</th>
+                        <th className="px-6 py-3 font-semibold">Image</th>
+                        <th className="px-6 py-3 font-semibold">Action</th>
                     </tr>
                 </thead>
                 <tbody>
