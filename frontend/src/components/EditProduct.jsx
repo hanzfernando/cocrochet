@@ -27,8 +27,8 @@ const EditProduct = ({ onClose, editingProduct }) => {
         if (file) {
             try {
                 const options = {
-                    maxSizeMB: 1, // Adjust as needed
-                    maxWidthOrHeight: 1024, // Adjust as needed
+                    maxSizeMB: 1, 
+                    maxWidthOrHeight: 1024,
                 };
                 const compressedFile = await imageCompression(file, options);
                 const reader = new FileReader();

@@ -21,7 +21,7 @@ const UserProfile = () => {
                     <span className='font-medium'>Role: </span> {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                 </p>
 
-                <ChangePasswordForm /> {/* Add the password change form here */}
+                <ChangePasswordForm /> 
             </div>
             
         </>

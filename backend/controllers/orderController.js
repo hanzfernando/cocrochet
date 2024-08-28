@@ -1,7 +1,6 @@
 import Order from '../models/orderModel.js';
 import Cart from '../models/cartModel.js';
 
-// Helper function to calculate total amount
 const calculateTotalAmount = (orderItemsWithPrice) => {
     return orderItemsWithPrice.reduce((total, item) => {
         total += item.quantity * item.price;

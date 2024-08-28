@@ -1,4 +1,3 @@
-// import image from '../assets/featured-1.png'
 import { FaPlus } from 'react-icons/fa'
 import AddProduct from './AddProduct.jsx'
 import EditProduct from './EditProduct.jsx';

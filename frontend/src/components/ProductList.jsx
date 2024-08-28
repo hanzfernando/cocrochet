@@ -12,7 +12,7 @@ const ProductList = () => {
         const fetchProducts = async () => {
             try {
                 const fetchedProducts = await getProducts();
-                // console.log('fetchedProducts', fetchedProducts);
+                
                 dispatch({ type: 'SET_PRODUCTS', payload: fetchedProducts });
             } catch (error) {
                 console.error('Failed to fetch products', error);

@@ -14,7 +14,7 @@ const cartReducer = (state, action) => {
 
             return {
                 ...state,
-                cart: action.payload, // Ensure this is an array
+                cart: action.payload, 
                 loading: false,
                 error: null
             }
@@ -26,10 +26,7 @@ const cartReducer = (state, action) => {
                 error: null
             }
         case 'UPDATE_CART_ITEM':        
-            // state.cart.cartItems.map(item => {
-            //     console.log("item id", item.productId._id)
-            //     console.log("action payload", action.payload.productId)
-            // })
+            
             return {
                 ...state,
                 cart: {

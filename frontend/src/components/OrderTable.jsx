@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getOrders, updateOrderStatus, updatePaymentStatus } from '../services/orderServices.js';
-import { useAuthContext } from '../hooks/useAuthContext.js'; // Import your auth hook
+import { useAuthContext } from '../hooks/useAuthContext.js'; 
 
 const OrderTable = () => {
-    const { user } = useAuthContext(); // Access user context to get the role
+    const { user } = useAuthContext(); 
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

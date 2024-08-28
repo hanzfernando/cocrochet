@@ -6,7 +6,7 @@ const ProductLoadingCard = () => {
         <div className="w-full max-w-6xl mx-auto px-10 p-8">
             <div className="flex flex-col md:flex-row bg-white border rounded-xl font-roboto">
                 <div className="w-full md:w-1/2">
-                    <div className="aspect-w-3 aspect-h-4"> {/* Adjusted aspect ratio */}
+                    <div className="aspect-w-3 aspect-h-4"> 
                         <img
                             src={loadingImage}
                             alt='Loading'

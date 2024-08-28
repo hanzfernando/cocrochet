@@ -18,7 +18,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(logger)
 app.use(cors({
-    origin: 'http://localhost:7000', // Ensure this matches your frontend URL
+    origin: 'http://localhost:7000',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

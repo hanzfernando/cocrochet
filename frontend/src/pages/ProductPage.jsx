@@ -4,13 +4,13 @@ import { getProduct } from '../services/productService.js';
 import { addToCart } from '../services/cartService.js';
 import ProductLoadingCard from '../components/ProductLoadingCard.jsx';
 import { toast } from 'react-toastify';
-import { useAuthContext } from '../hooks/useAuthContext.js'; // Import useAuthContext
+import { useAuthContext } from '../hooks/useAuthContext.js'; 
 
 const ProductPage = () => {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const { user } = useAuthContext(); // Get user from context
+    const { user } = useAuthContext(); 
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -48,14 +48,14 @@ const ProductPage = () => {
     }
 
     // Check if the user role is admin
-    const isAdmin = user?.role === 'admin'; // Assuming role is available on user object
+    const isAdmin = user?.role === 'admin'; 
 
     return (
         <div className="bg-gray-extralight">
             <div className="w-full max-w-6xl mx-auto px-10 p-8">
                 <div className="flex flex-col md:flex-row bg-white border rounded-xl font-roboto">
                     <div className="w-full md:w-1/2">
-                        <div className="aspect-w-3 aspect-h-4"> {/* Adjusted aspect ratio */}
+                        <div className="aspect-w-3 aspect-h-4"> 
                             <img
                                 src={product.image}
                                 alt={product.name}
@@ -83,7 +83,7 @@ const ProductPage = () => {
                                 onChange={handleQuantityChange}
                             />
                         </div>
-                        <div className=""> {/* Ensure button stays at the bottom */}
+                        <div className=""> 
                             <button
                                 onClick={handleAddToCart}
                                 className={`bg-gold-extralight hover:bg-gold-light text-white font-medium py-2 px-4 rounded w-full ${isAdmin ? 'bg-gray-400 cursor-not-allowed' : ''}`}

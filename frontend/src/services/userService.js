@@ -75,7 +75,7 @@ const changePassword = async (currentPassword, newPassword) => {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`, // Use your method of storing tokens
+                'Authorization': `Bearer ${token}`, 
             },
             body: JSON.stringify({ currentPassword, newPassword }),
         });
@@ -85,7 +85,7 @@ const changePassword = async (currentPassword, newPassword) => {
             throw new Error(errorData.error || 'Failed to change password');
         }
 
-        const data = await res.json();  // Added await here
+        const data = await res.json(); 
         return data.message;
     } catch (error) {
         throw new Error(error.message);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { changePassword } from '../services/userService.js'; // Service to handle password change
+import { changePassword } from '../services/userService.js'; 
 import { useLogout } from '../hooks/useLogout.js'
 const ChangePasswordForm = () => {
     const [currentPassword, setCurrentPassword] = useState('');

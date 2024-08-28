@@ -56,7 +56,7 @@ const updateCartItem = async (productId, quantity) => {
         if (!token) {
             throw new Error('You must be logged in to update cart item.');
         }
-        const response = await fetch(`${API_URL}/${productId}`, { // productId in the URL
+        const response = await fetch(`${API_URL}/${productId}`, { 
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const updateCartItem = async (productId, quantity) => {
             throw new Error('Error updating cart item.');
         }
 
-        return response.json(); // Return the updated item only
+        return response.json(); 
     } catch (error) {
         console.error('Error updating cart item: ', error);
         throw error;
@@ -82,7 +82,7 @@ const deleteCartItem = async (productId) => {
         if (!token) {
             throw new Error('You must be logged in to delete cart item.');
         }
-        const response = await fetch(`${API_URL}/${productId}`, { // productId in the URL
+        const response = await fetch(`${API_URL}/${productId}`, { 
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -49,7 +49,7 @@ const getCart = async (req, res) => {
 
 const updateCartItem = async (req, res) => {
     const userId = req.user._id;
-    const { quantity } = req.body; // productId comes from params now
+    const { quantity } = req.body;
     const { productId } = req.params;
 
     try {
@@ -79,7 +79,7 @@ const updateCartItem = async (req, res) => {
 
 const deleteCartItem = async (req, res) => {
     const userId = req.user._id;
-    const { productId } = req.params; // productId now comes from params
+    const { productId } = req.params; 
 
     try {
         let cart = await initializeCart(userId);

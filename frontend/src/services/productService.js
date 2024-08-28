@@ -6,7 +6,7 @@ const getProducts = async () => {
         if (!res.ok) {
             throw new Error('Failed to fetch products');
         }
-        return await res.json(); // Ensure parsing the response as JSON
+        return await res.json(); 
     } catch (error) {
         console.error("Error getting products:", error);
         throw error;
@@ -19,7 +19,7 @@ const getProduct = async (productId) => {
         if (!res.ok) {
             throw new Error(`Failed to fetch product with ID ${productId}`);
         }
-        return await res.json(); // Ensure parsing the response as JSON
+        return await res.json(); 
     } catch (error) {
         console.error(`Error getting product with ID ${productId}:`, error);
         throw error;
@@ -40,7 +40,7 @@ const createProduct = async (product) => {
             throw new Error('Failed to add product');
         }
 
-        return await res.json(); // Ensure parsing the response as JSON
+        return await res.json(); 
     } catch (error) {
         console.error("Error creating product:", error);
         throw error;
@@ -61,7 +61,7 @@ const editProduct = async (productId, product) => {
             throw new Error('Failed to edit product');
         }
 
-        return await res.json(); // Ensure parsing the response as JSON
+        return await res.json(); 
     } catch (error) {
         console.error("Error editing product:", error);
         throw error;
@@ -78,7 +78,7 @@ const deleteProduct = async (productId) => {
             throw new Error('Failed to delete product');
         }
 
-        return await res.json(); // Ensure parsing the response as JSON
+        return await res.json(); 
     } catch (error) {
         console.error("Error deleting product:", error);
         throw error;

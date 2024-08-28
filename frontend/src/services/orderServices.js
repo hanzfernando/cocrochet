@@ -20,7 +20,7 @@ const placeOrder = async (orderItems, paymentMethod) => {
             throw new Error('Error placing order.');
         }
 
-        return response.json(); // Return the placed order
+        return response.json(); 
     } catch (error) {
         console.error('Error placing order: ', error);
         throw error;
@@ -43,7 +43,7 @@ const getOrders = async () => {
             throw new Error('Error retrieving orders.');
         }
 
-        return response.json(); // Return a list of orders based on user role
+        return response.json(); 
     } catch (error) {
         console.error('Error getting orders: ', error);
         throw error;
@@ -66,7 +66,7 @@ const getOrderById = async (orderId) => {
             throw new Error('Error retrieving order.');
         }
 
-        return response.json(); // Return the order details
+        return response.json(); 
     } catch (error) {
         console.error('Error getting order: ', error);
         throw error;
